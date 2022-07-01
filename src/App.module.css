@@ -1,0 +1,12 @@
+
+/* São as duas colunas  */
+.wrapper{
+  max-width: 70rem;
+  margin: 2rem auto;
+  padding: 0 1rem;
+
+  display: grid;
+  grid-template-columns: 256px 1fr; /*a segunda coluna - 1fr- eu quero que tenha um tamanho flexivel e a primeira que fique fixa */
+  gap: 2rem;
+  align-items: flex-start; /* para ficar alinhada ao topo */
+}
