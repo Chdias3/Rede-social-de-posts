@@ -10,3 +10,14 @@
   gap: 2rem;
   align-items: flex-start; /* para ficar alinhada ao topo */
 }
+
+/* se for menor que 768px aplica   */
+@media (max-width: 768px) {
+html {
+  font-size: 87.5%;
+}
+
+  .wrapper{
+    grid-template-columns: 1fr; 
+  }
+}
