@@ -2,8 +2,14 @@ import { Avatar } from './Avatar'
 import { Comment } from './Comment'
 import styles from './Post.module.css'
 
-export function Post() {
-  return (
+// O post pecisa desses passos 
+//author - img, nome, cargo, data de publicação e conteudo do post 
+//author {avatar_url:"", name:"", role:""}
+//publishedAt: Date
+// content: Strng
+
+export function Post(props) {
+  return (                        
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
