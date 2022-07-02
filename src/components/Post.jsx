@@ -1,27 +1,38 @@
-import { Avatar } from './Avatar'
-import { Comment } from './Comment'
-import styles from './Post.module.css'
+import { format } from 'date-fns';
 
-// O post pecisa desses passos 
-//author - img, nome, cargo, data de publicação e conteudo do post 
+import { Avatar } from './Avatar';
+import { Comment } from './Comment';
+import styles from './Post.module.css';
+
+// O post pecisa desses passos
+//author - img, nome, cargo, data de publicação e conteudo do post
 //author {avatar_url:"", name:"", role:""}
 //publishedAt: Date
 // content: Strng
 
-export function Post(props) {
-  return (                        
+export function Post({ author, publishedAt }) {
+  const publishedDateFormatted = format(publishedAt, "d 'de' LLLL 'às' HH:mm'h'")
+
+  // const publishedDateFormatted = new Intl.DateTimeFormat('pt-BR', {
+  //   day: '2-digit',
+  //   month: 'long',
+  //   hour: '2-digit',
+  //   minute: '2-digit'
+  // }).format(publishedAt)
+
+  return (
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <Avatar  src="https://github.com/maykbrito.png" />
+          <Avatar src={author.avatar_url} />
           <div className={styles.authorInfo}>
-            <strong>Charles Alexsander</strong>
-            <span>Web Developer</span>
+            <strong>{author.name}</strong>
+            <span>{author.role}</span>
           </div>
         </div>
 
-        <time title="30 de junho às 21:51h" dateTime="2022-06-30 21:51:00">
-          Publicado há 1h
+        <time title="" dateTime="2022-06-30 21:51:00">
+          {publishedDateFormatted}
         </time>
       </header>
 
