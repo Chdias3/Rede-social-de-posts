@@ -46,7 +46,7 @@ const posts = [
       },
       { type: 'link', content: '👉 jane.design/doctorcare' }
     ],
-    publishedAt: new Date('2022-07-03 15:06:00')
+    publishedAt: new Date('2022-07-01 15:06:00')
   }
 ]
 
@@ -64,11 +64,11 @@ export function App() {
           {/* O map diferente do forEch retorna algo por isso usamos ele  */}
           {posts.map(post => {
             return (
-            <Post 
-            author={post.author}
-            content={post.content}
-            publishedAt={post.publishedAt}
-            />)
+              <Post
+                author={post.author}
+                content={post.content}
+                publishedAt={post.publishedAt}
+              />)
           })}
         </main>
       </div>
