@@ -1,7 +1,10 @@
 import { format, formatDistanceToNow } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
+import { useState } from 'react';
+
 import { Avatar } from './Avatar';
 import { Comment } from './Comment';
+
 import styles from './Post.module.css';
 
 // O post pecisa desses passos
@@ -11,6 +14,13 @@ import styles from './Post.module.css';
 // content: Strng
 
 export function Post({ author, publishedAt, content }) {
+  //  o setComments é a segunda possição do arrei de useState e permite auterar o valor da primeira possição
+  // entao o react é avisado quando acontece as auterações  
+  const [comments, setComments] = useState([
+    1,
+    2,
+  ])
+
   const publishedDateFormatted = format(publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
     locale: ptBR,
   })
@@ -28,6 +38,19 @@ export function Post({ author, publishedAt, content }) {
   //   hour: '2-digit',
   //   minute: '2-digit'
   // }).format(publishedAt)
+
+
+  // Estado ou useState- são variaveis que eu quero que o componente monitore ou seja quando quero que o react mostre algum valor
+  function handleCreateNewComment() {
+    event.preventDefault()
+
+    // Imutabilidade
+    // eu não passo somente o que eu quero inserir, mas passo o novo valor tambem 
+    // setComments([1, 2, 3]);
+
+    // Aqui ele le o comments do array e copia 1 e 2/ pega quantos comments tenho ate o momento e some mais 1
+    setComments([...comments, comments.length + 1]);
+  }
 
   return (
     <article className={styles.post}>
@@ -55,7 +78,7 @@ export function Post({ author, publishedAt, content }) {
         })}
       </div>
 
-      <form className={styles.comentForm}>
+      <form onSubmit={handleCreateNewComment} className={styles.comentForm}>
         <strong>Deixe seu feedback</strong>
         <textarea placeholder="Deixe um comentário"></textarea>
 
@@ -65,9 +88,9 @@ export function Post({ author, publishedAt, content }) {
       </form>
 
       <div className={styles.commentList}>
-        <Comment />
-        <Comment />
-        <Comment />
+        {comments.map(comment => {
+          return <Comment />
+        })}
       </div>
     </article>
   )
